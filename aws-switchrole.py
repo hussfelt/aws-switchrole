@@ -136,7 +136,27 @@ if __name__ == "__main__":
         help='profile in ~/.aws/config with role you want to switch to'
     )
 
+    parser.add_argument(
+        '--reset',
+        action='store_true',
+        required=False,
+        default=False,
+        help='Reset and environment-variables for profile'
+    )
+
     args = parser.parse_args()
+
+    if args.reset:
+        print_info(
+            "---- load these vars into your env to reset any assumed roles ----"
+        )
+        print_ok("unset AWS_SECURITY_TOKEN")
+        print_ok("unset AWS_SECRET_ACCESS_KEY")
+        print_ok("unset AWS_SESSION_TOKEN")
+        print_info(
+            '----------------------------------------------------------------'
+        )
+        sys.exit(0)
 
     if args.profile:
         profile = args.profile
