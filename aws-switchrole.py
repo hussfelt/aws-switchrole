@@ -153,6 +153,7 @@ if __name__ == "__main__":
         print_ok("unset AWS_SECURITY_TOKEN")
         print_ok("unset AWS_SECRET_ACCESS_KEY")
         print_ok("unset AWS_SESSION_TOKEN")
+        print_ok("unset AWS_DEFAULT_REGION")
         print_info(
             '----------------------------------------------------------------'
         )
@@ -170,6 +171,16 @@ if __name__ == "__main__":
     except:
         print_error(
             "FATAL: couldn't find a role_arn section in profile '{}'".format(
+                profile,
+                config_file
+            )
+        )
+
+    try:
+        region = config.get("profile {}".format(profile), "region")
+    except:
+        print_error(
+            "FATAL: couldn't find a region section in profile '{}'".format(
                 profile,
                 config_file
             )
@@ -208,6 +219,7 @@ if __name__ == "__main__":
             'AWS_SECRET_ACCESS_KEY': creds['Credentials']['SecretAccessKey'],
             'AWS_SESSION_TOKEN': creds['Credentials']['SessionToken'],
             'AWS_SECURITY_TOKEN': creds['Credentials']['SessionToken'],
+            'AWS_DEFAULT_REGION': region
         }
 
         print_ok("got temporary credentials for profile '{}'".format(profile))
