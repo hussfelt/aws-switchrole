@@ -150,6 +150,7 @@ if __name__ == "__main__":
         print_info(
             "---- load these vars into your env to reset any assumed roles ----"
         )
+        print_ok("unset AWS_ACCESS_KEY_ID")
         print_ok("unset AWS_SECURITY_TOKEN")
         print_ok("unset AWS_SECRET_ACCESS_KEY")
         print_ok("unset AWS_SESSION_TOKEN")
